@@ -1,6 +1,7 @@
 package io.javbrains.springbootstarter.topic;
 
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,5 +46,9 @@ public class TopicController {
 		return topicServices.updateTopic(topics, id);
 	}
 	
+	@RequestMapping(method=RequestMethod.DELETE, value ="/topics/{id}")
+	public List<Topics> deleteTopic(@PathVariable String id){
+		return topicServices.deleteTopic(id);
+	}
 	
 }

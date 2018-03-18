@@ -2,9 +2,11 @@ package io.javbrains.springbootstarter.topic;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 import java.util.function.Predicate;
 
+import org.springframework.boot.autoconfigure.h2.H2ConsoleAutoConfiguration;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -40,15 +42,21 @@ public class TopicServices {
 	}
 
 	public List<Topics> updateTopic(Topics topics, String id) {
-		System.out.println("--> "+id);
+		//System.out.println("--> "+id);
 		for(int i = 0; i < topicsList.size(); i++) {
 			Topics t = topicsList.get(i);
-			System.out.println("--> "+t.toString());
 			if(t.getId().equals(id)) {
-				topicsList.set(i, t);
+				topicsList.set(i, topics);
+				//System.out.println("--> "+topics.getId()+topics.getDescription()+topics.getName());
 				return topicsList;
-			}
+			} 
 		}
+		return topicsList;
+	}
+
+	public List<Topics> deleteTopic(String id) {
+		topicsList.removeIf(t -> t.getId().equals(id));
+		
 		return topicsList;
 	}
 	
